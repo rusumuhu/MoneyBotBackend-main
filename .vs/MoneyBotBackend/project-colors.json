@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6f4c1a74-95a3-42ce-a7db-bfd7fabe39df": {
+      "ProjectGuid": "6f4c1a74-95a3-42ce-a7db-bfd7fabe39df",
+      "DisplayName": "MoneyBotBackend",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
