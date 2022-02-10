@@ -1283,19 +1283,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Professional\\.nuget\\packages\\": {}
+    "C:\\Users\\nikki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Professional\\Documents\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\MoneyBotBackend.csproj",
+      "projectUniqueName": "C:\\Users\\nikki\\OneDrive\\Документы\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\MoneyBotBackend.csproj",
       "projectName": "MoneyBotBackend",
-      "projectPath": "C:\\Users\\Professional\\Documents\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\MoneyBotBackend.csproj",
-      "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Professional\\Documents\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\obj\\",
+      "projectPath": "C:\\Users\\nikki\\OneDrive\\Документы\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\MoneyBotBackend.csproj",
+      "packagesPath": "C:\\Users\\nikki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nikki\\OneDrive\\Документы\\GitHub\\MoneyBotBackend-main\\MoneyBotBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nikki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
