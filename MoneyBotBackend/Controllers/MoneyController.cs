@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyBotBackend.DbContext;
 using MoneyBotBackend.Models;
 using MoneyBotBackend.Models.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,18 +16,22 @@ namespace MoneyBotBackend.Controllers
     public class MoneyController : ControllerBase
     {
         private MoneyBotContext _context;
+        private IMapper _mapper;
+
         public MoneyController(MoneyBotContext context)
         {
             _context = context;
+            _mapper = mapper;
         }
         [HttpPost("add/{userId}")]
-        public async Task<ActionResult> AddMoneyOperation([FromQuery] int userId, [FromBody] MoneyOperation moneyOperation)
+        public async Task<ActionResult> AddMoneyOperation([FromRoute] int userId, [FromBody] MoneyOperation moneyOperation)
         {
             Money money = new Money()
             {
+
                 Sum = moneyOperation.Sum,
                 Operation = moneyOperation.Operation,
-                DateTime = moneyOperation.DateTime,
+                DateTime = DateTime.Now,
                 UserId = userId
             };
             _context.Add(money);
@@ -35,13 +41,25 @@ namespace MoneyBotBackend.Controllers
             return Ok();
         }
         [HttpGet("{userId}")]
-        public async Task<ActionResult<List<Money>>> GetMoneyOperations(int userId)
+        public async Task<ActionResult<List<MoneyOperation>>> GetMoneyOperations(int userId)
         {
-            List<Money> operations =  await _context.Moneys.AsNoTracking().Where(h => h.UserId == userId).ToListAsync();
+            bool isExistUser = await _context.Users.AnyAsync(h => h.Id == userId);
+
+            if (!isExistUser) return NotFound();
+
+
+            List<Money> operations = await _context.Moneys.AsNoTracking().Where(h => h.UserId == userId).ToListAsync();
 
             if (operations == null) return NotFound();
 
-            return operations;
+            List<MoneyOperation> Moneyoperations = new List<MoneyOperation>();
+
+            for (int i = 0; i < operations.Count; i++)
+            {
+                moneyOperations.Add(_mapper.Map<MoneyOperation>(operations[i]));
+            }
+
+            return moneyOperations;
         }
         [HttpGet("{userId}/{skipCount}/{countMoneyOperations}")]
         public async Task<ActionResult<List<Money>>> GetNewOperations(int userId, int skipCount, int countMoneyOperations)
@@ -49,6 +67,7 @@ namespace MoneyBotBackend.Controllers
          bool isExistUser =  await _context.Users.AnyAsync(h => h.Id == userId);
             
             if (isExistUser) return NotFound();
+
 
            List<Money> operations = await _context.Moneys.AsNoTracking().Where(h => h.UserId == userId).Skip(skipCount).Take(countMoneyOperations).ToListAsync();
             
